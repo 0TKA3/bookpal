@@ -62,6 +62,7 @@ body {
         display: flex;
         width: 100%;
         justify-content: center;
+        align-items: center;
         input {
             width: 50%;
             min-width: 100px;
@@ -82,6 +83,9 @@ body {
             &:hover {
                 background-color: #d8d8d8;
             }
+        }
+        h2 {
+            margin-right: 5px;
         }
     }
     .sorting {
@@ -118,16 +122,16 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-template-rows: 1fr;
-    grid-column-gap: 15px;
-    grid-row-gap: 15px;
+    grid-column-gap: 25px;
+    grid-row-gap: 25px;
     padding: 10px;
     max-width: 100%;
 }
 
 .book__card {
     width: 100%;
-    height: 450px;
-    background-color: rgb(208, 208, 208);
+    height: 500px;
+    background-color: #ddd9c2;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -135,8 +139,28 @@ body {
     
     .book__card__preview-image {
         width: 100%;
-        height: 100%;
+        height: 80%;
         position: absolute;
+    }
+    .book__card__information {
+        position: absolute;
+        bottom: 0;
+        height: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 5px 0px;
+    }
+    .book__card__information__title {
+        font-size: 20px;
+        color: black;
+        overflow: hidden;
+    }
+    .book__card__information__author {
+        font-size: 14px;
+        background-color: rgb(205, 176, 176);
+        color: black;
+        overflow: visible;
     }
 
 }
@@ -146,11 +170,31 @@ body {
         grid-template-columns: 1fr;
     }
     .book__card {
-        width: 70%;
+        width: 65%;
+        height: 400px;
     }
+
+
     .content {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+}
+@media (min-width: 0px) and (max-width: 680px) {
+    .sorting {
+        .categories {
+            margin: 0px !important;
+        }
+    }
+    .search-container {
+        padding: 5px;
+        height: 500px;
+    }
+    .search-input {
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between !important;
     }
 }

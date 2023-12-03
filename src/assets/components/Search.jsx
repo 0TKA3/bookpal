@@ -10,6 +10,7 @@ const Search = () => {
 
     const [sortingBy, setSortingBy] = useState('relevance');
     const [countOfBooks, setCountOfBooks] = useState('15');
+    const [searchAuthor, setSearchAuthor] = useState('')
 
     function changeSortingHandler(event){
         setSortingBy(event.target.value);
@@ -25,6 +26,10 @@ const Search = () => {
     function getTitle(event) {
         dispatch(setSearch(event.target.value))
     }
+
+    function getAuthor(event) {
+        setSearchAuthor(event.target.value)
+    }
     
     async function getBooks() {
         let linkTitile = searchValue.split(' ')
@@ -32,7 +37,7 @@ const Search = () => {
 
         const apiKey = 'AIzaSyBZfqQnlQ-NZTLMtsSliTeoQ3wvZEegVEU'
 
-        let link = `https://www.googleapis.com/books/v1/volumes?q=intitle:${linkTitile}&inauthor:${linkTitile}&key=${apiKey}&maxResults=${countOfBooks}&orderBy=${sortingBy}`
+        let link = `https://www.googleapis.com/books/v1/volumes?q=intitle:${linkTitile}&inauthor:${searchAuthor}&key=${apiKey}&maxResults=${countOfBooks}&orderBy=${sortingBy}`
 
         await axios
             .get(link)
@@ -54,7 +59,10 @@ const Search = () => {
             <div className="search-container">
                 <h1>Search for books!</h1>
                 <div className="search-input">
-                    <input type="text" placeholder='Book title or author' onInput={getTitle}/>
+                    <h2>Title:</h2>
+                    <input type="text" placeholder='Title' onInput={getTitle}/>
+                    <h2>Author:</h2>
+                    <input type="text" placeholder='Author' onInput={getAuthor} value={searchAuthor}/>
                     <button type='button' onClick={getBooks} >Search</button>
                 </div>
                 <div className="sorting">
