@@ -9,9 +9,13 @@ import { useEffect, useState } from 'react'
 const Search = () => {
 
     const [sortingBy, setSortingBy] = useState('relevance');
+    const [countOfBooks, setCountOfBooks] = useState('15');
 
     function changeSortingHandler(event){
         setSortingBy(event.target.value);
+    }
+    function changeCountHandler(event){
+        setCountOfBooks(event.target.value)
     }
 
     const dispatch = useDispatch()
@@ -20,7 +24,6 @@ const Search = () => {
 
     function getTitle(event) {
         dispatch(setSearch(event.target.value))
-        console.log(searchValue)
     }
     
     async function getBooks() {
@@ -29,7 +32,7 @@ const Search = () => {
 
         const apiKey = 'AIzaSyBZfqQnlQ-NZTLMtsSliTeoQ3wvZEegVEU'
 
-        let link = `https://www.googleapis.com/books/v1/volumes?q=intitle:${linkTitile}&key=${apiKey}&maxResults=15&orderBy=${sortingBy}`
+        let link = `https://www.googleapis.com/books/v1/volumes?q=intitle:${linkTitile}&inauthor:${linkTitile}&key=${apiKey}&maxResults=${countOfBooks}&orderBy=${sortingBy}`
 
         await axios
             .get(link)
@@ -40,9 +43,11 @@ const Search = () => {
     }
 
     useEffect(() => {
-        // Функция, вызываемая при изменении sortingBy
         getBooks();
     }, [sortingBy]);
+    useEffect(() => {
+        getBooks();
+    }, [countOfBooks]);
 
     return (
         <div className='search'>
@@ -54,15 +59,15 @@ const Search = () => {
                 </div>
                 <div className="sorting">
                     <div className="categories">
-                        <h3>Categories</h3>
-                        <select>
-                            <option>all</option>
-                            <option>art</option>
-                            <option>biography</option>
-                            <option>computers</option>
-                            <option>history</option>
-                            <option>medical</option>
-                            <option>poetry</option>
+                        <h3>Count</h3>
+                        <select value={countOfBooks} onChange={changeCountHandler}>
+                            <option value='5' >5</option>
+                            <option value='10'>10</option>
+                            <option value='15'>15</option>
+                            <option value='20'>20</option>
+                            <option value='25'>25</option>
+                            <option value='30'>30</option>
+                            <option value='40'>40</option>
                         </select>
                     </div>
                     <div className="sorting-by">
