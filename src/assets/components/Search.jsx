@@ -48,6 +48,12 @@ const Search = () => {
             })
     }
 
+    function enterSearch(event) {
+        if(event.key=='Enter') {
+            getBooks()
+        }
+    }
+
     useEffect(() => {
         getBooks();
     }, [sortingBy]);
@@ -61,9 +67,9 @@ const Search = () => {
                 <h1>Search for books!</h1>
                 <div className="search-input">
                     <h2>Title:</h2>
-                    <input type="text" placeholder='Title' onInput={getTitle}/>
+                    <input type="text" placeholder='Title' onInput={getTitle} onKeyUp={enterSearch}/>
                     <h2>Author:</h2>
-                    <input type="text" placeholder='Author' onInput={getAuthor} value={searchAuthor}/>
+                    <input type="text" placeholder='Author' onInput={getAuthor} value={searchAuthor} onKeyUp={enterSearch}/>
                     <button type='button' onClick={getBooks} >Search</button>
                 </div>
                 <div className="sorting">
