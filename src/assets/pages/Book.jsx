@@ -1,5 +1,5 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import noimage from '../images/noimage.png';
 
@@ -11,6 +11,7 @@ const Book = () => {
   if (!book || !book.volumeInfo) {
     return <div>Загрузка...</div>;
   }
+
 
   const bookItem = {
     author: book.volumeInfo.authors,
@@ -28,6 +29,7 @@ const Book = () => {
 
   return (
     <div className='book__page'>
+      <Link to='/bookpal' className="return_backward">Back</Link>
       <div className="book__information">
         <div className="book__information__image-side">
           <img className='book__information__image' src={bookItem.img} alt="book image" onClick={()=>console.log(book)}/>
@@ -40,9 +42,9 @@ const Book = () => {
         <div className='book__information__text'>
           <h1 className="book__information__title">{bookItem.title} <span className='book__information__title__page-count'>pages:{bookItem.pageCount}</span></h1>
           <h2 className="book__information__author">{bookItem.author}</h2>
+          <p className="book__information__caregories">Category: {bookItem.categories}</p>
           <p className='book__information__subtitle' >{bookItem.subtitle}</p>
           <p className='book__information__subtitle' >{bookItem.description}</p>
-          <p className="book__information__caregories">{bookItem.categories}</p>
         </div>
       </div>
 

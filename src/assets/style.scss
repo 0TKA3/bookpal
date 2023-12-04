@@ -193,6 +193,7 @@ body {
         
         .book__information__title {
             color: black;
+            font-weight: 900;
         }
         
         .book__information__subtitle {
@@ -204,11 +205,13 @@ body {
             font-size: 16px;
         }
         .book__information__caregories {
-            background-color: blue;
+            background-color: #e5e1c9;
+            color: green;
         }
         .book__information__title__page-count {
             color: #606C38;
             font-size: 20px;
+            font-weight: normal;
         }
     }
 
@@ -225,6 +228,19 @@ body {
         }
     }
     
+}
+
+.return_backward {
+    width: 100%;
+    height: 50px;
+    background-color: #d0ccb5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+    color: black;
+    font-size: 22px;
 }
 
 @media (min-width: 0px) and (max-width: 562px) {
