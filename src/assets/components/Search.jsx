@@ -34,20 +34,17 @@ const Search = () => {
     async function getBooks() {
         let linkTitile = searchValue.split(' ')
         linkTitile = linkTitile.join('&')
-        console.log(linkTitile)
         let linkAuthor = searchAuthor.split(' ')
         linkAuthor = linkAuthor.join('&')
 
         const apiKey = 'AIzaSyBZfqQnlQ-NZTLMtsSliTeoQ3wvZEegVEU'
 
         let link = `https://www.googleapis.com/books/v1/volumes?q=intitle:${linkTitile}&inauthor:${searchAuthor}&key=${apiKey}&maxResults=${countOfBooks}&orderBy=${sortingBy}`
-        console.log(link)
 
         await axios
             .get(link)
             .then(data=>{
                 dispatch(setItems(data.data.items))
-                console.log(data.data.items)
             })
     }
 
