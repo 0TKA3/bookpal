@@ -165,20 +165,22 @@ body {
 
 }
 
-@media (min-width: 0px) and (max-width: 560px) {
+@media (min-width: 0px) and (max-width: 562px) {
     .content {
         grid-template-columns: 1fr;
     }
     .book__card {
-        width: 65%;
+        width: 100%;
         height: 400px;
     }
-
 
     .content {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+    a {
+        width: 65%;
     }
 }
 @media (min-width: 0px) and (max-width: 680px) {

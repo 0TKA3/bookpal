@@ -1,20 +1,20 @@
-import { useState } from 'react'
-import Search from './assets/components/Search'
-import Content from './assets/components/Content'
-import './assets/style.scss'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Search from './assets/components/Search';
+import Content from './assets/components/Content';
+import Book from './assets/pages/Book';
+import './assets/style.scss';
 
 function App() {
-
-  let [title, setTitle] = useState('')
-
   return (
-    <>
       <div className="container">
-        <Search></Search>
-        <Content></Content>
+          <Search />
+        <Routes>
+          <Route path='/bookpal' element={<Content />}/>
+          <Route path="/bookpal/book/:id" element={<Book />} />
+        </Routes>
       </div>
-    </>
-  )
+  );
 }
 
-export default App
+export default App;
