@@ -1,17 +1,41 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import axios from 'axios';
 import noimage from '../images/noimage.png';
 
 const Book = () => {
   const { id } = useParams();
-  const books = useSelector((state) => state.items.value);
-  const book = books.find((item) => item.id === id);
+  const [book, setBook] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  if (!book || !book.volumeInfo) {
-    return <div>Загрузка...</div>;
+  const apiKey = 'AIzaSyBZfqQnlQ-NZTLMtsSliTeoQ3wvZEegVEU';
+
+  useEffect(() => {
+    let link = `https://www.googleapis.com/books/v1/volumes?q=${id}&key=${apiKey}`;
+
+    async function getBook() {
+      try {
+        const response = await axios.get(link);
+        setBook(response.data.items[0]);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching book:', error);
+        setLoading(false);
+      }
+    }
+
+    getBook();
+  }, [id]);
+
+  if (loading) {
+    return <div className='loading__container'>
+      <span className="loader"></span>
+    </div>;
   }
 
+  if (!book || !book.volumeInfo) {
+    return <div>Книга не найдена</div>;
+  }
 
   const bookItem = {
     author: book.volumeInfo.authors,
@@ -47,7 +71,6 @@ const Book = () => {
           <p className='book__information__subtitle' >{bookItem.description}</p>
         </div>
       </div>
-
     </div>
   );
 };
