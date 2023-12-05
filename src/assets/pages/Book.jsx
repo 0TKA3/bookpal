@@ -16,7 +16,14 @@ const Book = () => {
     async function getBook() {
       try {
         const response = await axios.get(link);
-        setBook(response.data.items[0]);
+        let responseData = response.data.items
+        if(responseData.length>1) {
+          responseData = responseData.filter((item)=>{
+            const itemId = item.id
+            return itemId==id
+          })
+        }
+        setBook(responseData[0]);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching book:', error);

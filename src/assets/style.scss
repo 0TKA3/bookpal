@@ -308,6 +308,15 @@ body {
         font-size: 18px;
     }
 
+    .book__information {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .book__information__text {
+        width: 80% !important;
+    }
+
 
 
 }
