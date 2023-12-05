@@ -2,28 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import noimage from '../images/noimage.png';
+import { useSelector } from 'react-redux'
 
 const Book = () => {
   const { id } = useParams();
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const filterBookValue = useSelector((state)=>state.currentBook.value)
+
   const apiKey = 'AIzaSyBZfqQnlQ-NZTLMtsSliTeoQ3wvZEegVEU';
 
   useEffect(() => {
-    let link = `https://www.googleapis.com/books/v1/volumes?q=${id}&key=${apiKey}`;
+    let link = `https://www.googleapis.com/books/v1/volumes/${id}`
+  
 
     async function getBook() {
       try {
         const response = await axios.get(link);
-        let responseData = response.data.items
-        if(responseData.length>1) {
-          responseData = responseData.filter((item)=>{
-            const itemId = item.id
-            return itemId==id
-          })
-        }
-        setBook(responseData[0]);
+        let responseData = response.data
+        // console.log(response)
+        // console.log(responseData)
+        setBook(responseData);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching book:', error);
