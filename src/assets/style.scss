@@ -1,15 +1,16 @@
-$white: #FEFAE0;
+$white: #f6f6f6;
 $green: #606C38;
 $dark-green: #283618;
 $brown: #DDA15E;
 $dark-brown: #BC6C25;
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 * {
 	padding: 0px;
 	margin: 0px;
 	border: none;
+    font-family: 'Inter';
 }
 
 *,
@@ -17,6 +18,7 @@ $dark-brown: #BC6C25;
 *::after {
 	box-sizing: border-box;
     outline: none;
+    font-family: 'Inter';
 }
 
 /* Links */
@@ -31,8 +33,11 @@ a:hover  {
 
 body {
     background-color: $white;
-    font-family: 'Roboto';
     color: white;
+}
+
+input,button {
+    font-family: Inter !important;
 }
 
 .container {
@@ -123,24 +128,27 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-template-rows: 1fr;
     grid-column-gap: 25px;
-    grid-row-gap: 25px;
+    grid-row-gap: 30px;
     padding: 10px;
-    max-width: 100%;
+    max-width: 80%;
+    margin: 0 auto;
 }
 
 .book__card {
     width: 100%;
-    height: 500px;
-    background-color: #ddd9c2;
+    height: 570px;
+    background-color: transparent;
     display: flex;
     flex-direction: column;
-    align-items: center;
     position: relative;
     
     .book__card__preview-image {
         width: 100%;
         height: 80%;
         position: absolute;
+        box-shadow: 0px 0px 20px 2px rgba(34, 60, 80, 0.2);
+
+
     }
     .book__card__information {
         position: absolute;
@@ -149,18 +157,20 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: 5px 0px;
     }
     .book__card__information__title {
         font-size: 20px;
-        color: black;
+        color: #676767;
         overflow: hidden;
+        margin-top: 23px;
+        font-weight: 600;
     }
     .book__card__information__author {
+        margin-top: 10px;
         font-size: 14px;
-        background-color: rgb(205, 176, 176);
-        color: black;
+        color: #8A8988;
         overflow: visible;
+        font-weight: 400;
     }
 
 }
@@ -211,20 +221,23 @@ body {
         .book__information__title__page-count {
             color: #606C38;
             font-size: 20px;
-            font-weight: normal;
+            font-weight: 400;
         }
     }
 
     .book__information__links {
         display: flex;
         width: 100%;
-        background-color: #ccc;
+        justify-content: space-between;
 
 
         a {
             font-size: 20px;
-            color: red;
+            color: rgb(62, 62, 62);
             margin-right: 5px;
+            text-decoration: underline;
+            padding: 3px;   
+            text-align: center;
         }
     }
     
@@ -233,13 +246,13 @@ body {
 .return_backward {
     width: 100%;
     height: 50px;
-    background-color: #d0ccb5;
+    background-color: $dark-green;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     margin-bottom: 20px;
-    color: black;
+    color: white;
     font-size: 22px;
 }
 
@@ -282,7 +295,7 @@ body {
     } 
 }
 
-@media (min-width: 0px) and (max-width: 680px) {
+@media (min-width: 581px) and (max-width: 700px) {
     .sorting {
         .categories {
             margin: 0px !important;
@@ -303,14 +316,33 @@ body {
     .book__information__image {
         height: 209px;
     }
+    .book__card__container {
+        width: 60%;
+    }
+    .book__card {
+        width: 100%;
+    }
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
-@media (min-width: 0px) and (max-width: 562px) {
+@media (min-width: 0px) and (max-width: 580px) {
+
+    .book__card__container {
+        width: 100%;
+    }
     .content {
         grid-template-columns: 1fr;
     }
     .book__card {
         width: 100%;
         height: 400px;
+        h1 {
+            margin-top: 5px !important;
+            font-size: 18px !important;
+        }
     }
 
     .content {
@@ -322,9 +354,7 @@ body {
         width: 65%;
     }
 
-    .book__information__title {
-        font-size: 22px;
-    }
+    
 
     .book__information__title__page-count {
         font-size: 18px;
@@ -336,7 +366,7 @@ body {
     }
 
     .book__information__text {
-        width: 80% !important;
+        width: 95% !important;
     }
     .sorting {
 

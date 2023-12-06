@@ -13,7 +13,7 @@ const BookCard = ({ book }) => {
 
 
   return (
-    <Link to={`/bookpal/book/${bookItem.id}`}>
+    <Link className='book__card__container' to={`/bookpal/book/${bookItem.id}`}>
       <div className="book__card" >
         <img className="book__card__preview-image" src={bookItem.img} alt="thumbnail" />
         <div className="book__card__information">
